@@ -70,7 +70,7 @@ class Kyouiku:
         REIWA2 = _REIWA2
         HEISEI4 = _HEISEI4
 
-    def __init__(self, version=Version.REIWA2):
+    def __init__(self, version: Version = Version.REIWA2):
         self.GRADE1 = version.value.GRADE1
         self.GRADE2 = version.value.GRADE2
         self.GRADE3 = version.value.GRADE3

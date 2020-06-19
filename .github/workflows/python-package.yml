@@ -26,5 +26,6 @@ jobs:
         pip install poetry
         poetry install
     - name: Test with pytest
-      run: |
-        poetry run pytest
+      run: poetry run pytest
+    - name: Static type checking
+      run: poetry run mypy --disallow-untyped-defs kanji_lists
