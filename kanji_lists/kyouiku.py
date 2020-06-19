@@ -1,4 +1,6 @@
 from enum import Enum
+from functools import cached_property
+from typing import Set
 
 
 class _REIWA2:
@@ -77,3 +79,14 @@ class Kyouiku:
         self.GRADE4 = version.value.GRADE4
         self.GRADE5 = version.value.GRADE5
         self.GRADE6 = version.value.GRADE6
+
+    @cached_property
+    def FULL(self) -> Set:
+        return (
+            self.GRADE1
+            | self.GRADE2
+            | self.GRADE3
+            | self.GRADE4
+            | self.GRADE5
+            | self.GRADE6
+        )
