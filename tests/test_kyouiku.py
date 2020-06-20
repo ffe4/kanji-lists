@@ -32,6 +32,16 @@ def test_number_of_kanji(version, grade, expected):
     assert len(grade_set) == expected
 
 
+@pytest.mark.parametrize("version", Kyouiku.Version.__members__.values())
+def test_contains_each_character_exactly_once(version):
+    kyouiku_list = Kyouiku(version)
+    kanji_from_all_grades = [
+        kanji for grade in version.value.values() for kanji in grade
+    ]
+    assert set(kanji_from_all_grades) == kyouiku_list
+    assert len(kanji_from_all_grades) == len(kyouiku_list)
+
+
 @pytest.mark.parametrize(
     "old,new,grade,difference",
     [
