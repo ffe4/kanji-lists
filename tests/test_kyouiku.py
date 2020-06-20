@@ -33,15 +33,14 @@ def test_number_of_kanji(version, grade, expected):
 
 
 @pytest.mark.parametrize("version", Kyouiku.Version.__members__.values())
-def test_full_list(version):
+def test_no_duplicate_characters_in_grades(version):
     kyouiku_list = Kyouiku(version)
     kanji_from_all_grades = []
     for grade in range(1, 7):
         grade_set = getattr(kyouiku_list, f"GRADE{str(grade)}")
         kanji_from_all_grades.extend(grade_set)
-    full_list = kyouiku_list.FULL
-    assert len(kanji_from_all_grades) == len(full_list)
-    assert set(kanji_from_all_grades) == full_list
+    assert set(kanji_from_all_grades) == kyouiku_list
+    assert len(kanji_from_all_grades) == len(kyouiku_list)
 
 
 @pytest.mark.parametrize(
