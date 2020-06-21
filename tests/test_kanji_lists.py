@@ -1,4 +1,4 @@
-from kanji_lists import JOYO, KYOIKU, __version__
+from kanji_lists import JOYO, KYOIKU, JINMEIYO, __version__
 import pytest
 
 
@@ -38,6 +38,20 @@ def test_number_of_joyo_kanji(version):
     joyo_list = getattr(JOYO, version)
     expected = joyo_kanji_test_data[version]
     assert len(joyo_list) == expected, (version, len(joyo_list))
+
+
+jinmeiyo_kanji_test_data = {
+    "HEISEI29": 863,
+    "HEISEI27": 862,
+    "HEISEI25": 861,
+}
+
+
+@pytest.mark.parametrize("version", JINMEIYO.version_list())
+def test_number_of_jinmeiyo_kanji(version):
+    jinmeiyo_list = getattr(JINMEIYO, version)
+    expected = jinmeiyo_kanji_test_data[version]
+    assert len(jinmeiyo_list) == expected, (version, len(jinmeiyo_list))
 
 
 @pytest.mark.parametrize(
