@@ -1,0 +1,22 @@
+"""This module has been automatically generated. Do not edit manually!"""
+{% for type_name, type_data in data.items() %}
+
+class {{ type_name }}(set):
+    """{{ type_data["description"] }}"""
+
+    # fmt: off
+  {%- for version_name, version_data in type_data["versions"].items() %}
+  {%- if "source" in version_data %}
+    # source: {{ version_data["source"] }}
+  {%- endif %}
+    {{ version_name }} = {{ set(version_data["characters"]) }}
+  {%- endfor %}
+    # fmt: on
+
+    def __init__(self):
+        super().__init__(self.{{ type_data["default"] }})
+{% endfor %}
+
+{% for type_name, type_data in data.items() -%}
+{{ type_name }} = {{ type_name }}()
+{% endfor %}
