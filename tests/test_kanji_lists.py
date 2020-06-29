@@ -1,4 +1,5 @@
-from kanji_lists import JOYO, JINMEIYO, KYOIKU, __version__
+from kanji_lists import *
+from kanji_lists import __version__
 import pytest
 
 
@@ -7,7 +8,7 @@ def test_version():
 
 
 @pytest.mark.parametrize(
-    "kanji_list,current_version",
+    "kanji_list,default_version",
     [
         (JOYO, JOYO.HEISEI22),
         (JINMEIYO, JINMEIYO.HEISEI29),
@@ -18,10 +19,16 @@ def test_version():
         (KYOIKU.GRADE4, KYOIKU.REIWA2.GRADE4),
         (KYOIKU.GRADE5, KYOIKU.REIWA2.GRADE5),
         (KYOIKU.GRADE6, KYOIKU.REIWA2.GRADE6),
+        (JLPT, JLPT.TANOS),
+        (JLPT.N1, JLPT.TANOS.N1),
+        (JLPT.N2, JLPT.TANOS.N2),
+        (JLPT.N3, JLPT.TANOS.N3),
+        (JLPT.N4, JLPT.TANOS.N4),
+        (JLPT.N5, JLPT.TANOS.N5),
     ],
 )
-def test_current_version_is_correct(kanji_list, current_version):
-    assert kanji_list == current_version
+def test_default_version_is_correct(kanji_list, default_version):
+    assert kanji_list == default_version
 
 
 @pytest.mark.parametrize(
@@ -63,6 +70,12 @@ def test_current_version_is_correct(kanji_list, current_version):
         (KYOIKU.SHOWA36.GRADE4, 205),
         (KYOIKU.SHOWA36.GRADE5, 194),
         (KYOIKU.SHOWA36.GRADE6, 144),
+        (JLPT.TANOS, 2211),
+        (JLPT.TANOS.N1, 1232),
+        (JLPT.TANOS.N2, 367),
+        (JLPT.TANOS.N3, 367),
+        (JLPT.TANOS.N4, 166),
+        (JLPT.TANOS.N5, 79)
     ],
 )
 def test_number_of_kanji(kanji_list, expected):
