@@ -1,0 +1,9 @@
+"""This module has been automatically generated. Do not edit manually!"""
+
+
+from kanji_lists.kanji_lists import {% for key, value in data|dictsort %}
+    {{- key }}{% if not loop.last %}, {% endif %}
+{%- endfor %}
+
+__version__ = "{{ version }}"
+
