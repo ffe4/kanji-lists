@@ -1,8 +1,18 @@
 [tool.poetry]
 name = "kanji-lists"
 version = "0.1.0"
-description = "Collection of Japanese Kanji lists"
-authors = ["Daniel Lemm <61800298+ffe4@users.noreply.github.com>"]
+description = "Collection of Japanese kanji lists"
+license = "MIT"
+authors = ["Daniel Lemm <daniel.lemm@outlook.com>"]
+readme = "README.rst"
+repository = "https://github.com/ffe4/kanji-lists"
+keywords = ["japanese", "kanji"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Natural Language :: Japanese"
+]
 
 [tool.poetry.dependencies]
 python = "^3.6"
