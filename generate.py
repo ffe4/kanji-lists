@@ -21,3 +21,9 @@ with open("codegen/__init__.jinja2") as f:
 
 with open("kanji_lists/__init__.py", "w") as f:
     f.write(template.render(data=data, version=project_version))
+
+with open("codegen/README.jinja2") as f:
+    template = Template(f.read())
+
+with open("README.rst", "w") as f:
+    f.write(template.render(data=data))

@@ -56,56 +56,14 @@ get the same version of the list across updates.
 Available Lists and Versions
 ============================
 
-
-- JINMEIYO
-    
-  - HEISEI25
-  - HEISEI27
-  - HEISEI29
-- JLPT
-    
-  - TANOS
-            
-    - N1
-    - N2
-    - N3
-    - N4
-    - N5
-- JOYO
-    
-  - HEISEI22
-  - SHOWA56
-- KYOIKU
-    
-  - HEISEI4
-            
-    - GRADE1
-    - GRADE2
-    - GRADE3
-    - GRADE4
-    - GRADE5
-    - GRADE6
-  - REIWA2
-            
-    - GRADE1
-    - GRADE2
-    - GRADE3
-    - GRADE4
-    - GRADE5
-    - GRADE6
-  - SHOWA36
-            
-    - GRADE1
-    - GRADE2
-    - GRADE3
-    - GRADE4
-    - GRADE5
-    - GRADE6
-  - SHOWA55
-            
-    - GRADE1
-    - GRADE2
-    - GRADE3
-    - GRADE4
-    - GRADE5
-    - GRADE6
+{% for key, data in data|dictsort %}
+- {{ key }}
+    {% for key, data in data["versions"]|dictsort %}
+  - {{ key }}
+        {%- if data["characters"] is mapping %}
+            {% for key, data in data["characters"]|dictsort %}
+    - {{ key }}
+            {%- endfor %}
+        {%- endif %}
+    {%- endfor %}
+{%- endfor %}
