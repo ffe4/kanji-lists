@@ -3,22 +3,22 @@
 
 class KanjiSet(set):
     pass
-{% for type_name, type_data in data.items() %}
+{% for type_name, type_data in data|dictsort %}
 
 class {{ type_name }}(KanjiSet):
     """{{ type_data["description"] }}"""
 
     # fmt: off
-    {%- for version_name, version_data in type_data["versions"].items() %}
+    {%- for version_name, version_data in type_data["versions"]|dictsort %}
         {%- if "source" in version_data %}
     # source: {{ version_data["source"] }}
         {%- endif %}
         {%- if version_data["characters"] is string %}
-    {{ version_name }} = KanjiSet({{ set(version_data["characters"]) }})
+    {{ version_name }} = KanjiSet({{ version_data["characters"]|sort }})
         {%- else %}
-    {{ version_name }} = KanjiSet({{ set().union(*version_data["characters"].values()) }})
-            {%- for key, value in version_data["characters"].items() %}
-    {{ version_name }}.{{ key }} = KanjiSet({{ set(value) }})
+    {{ version_name }} = KanjiSet({{ set().union(*version_data["characters"].values())|sort }})
+            {%- for key, value in version_data["characters"]|dictsort %}
+    {{ version_name }}.{{ key }} = KanjiSet({{ value|sort }})
             {%- endfor %}
         {%- endif %}
     {%- endfor %}
@@ -26,13 +26,13 @@ class {{ type_name }}(KanjiSet):
 
     def __init__(self):
     {%- if type_data["versions"][type_data["default"]]["characters"] is mapping %}
-        {%- for key in type_data["versions"][type_data["default"]]["characters"].keys() %}
+        {%- for key in type_data["versions"][type_data["default"]]["characters"].keys()|sort %}
         self.{{ key }} = self.{{ type_data["default"] }}.{{ key }}
         {%- endfor %}
     {%- endif %}
         super().__init__(self.{{ type_data["default"] }})
 {% endfor %}
 
-{% for type_name, type_data in data.items() -%}
+{% for type_name, type_data in data|dictsort -%}
 {{ type_name }} = {{ type_name }}()
 {% endfor %}
