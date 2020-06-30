@@ -5,7 +5,7 @@ description = "Collection of Japanese Kanji lists"
 authors = ["Daniel Lemm <61800298+ffe4@users.noreply.github.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.6"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
