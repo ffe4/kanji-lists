@@ -75,7 +75,7 @@ def test_default_version_is_correct(kanji_list, default_version):
         (JLPT.TANOS.N2, 367),
         (JLPT.TANOS.N3, 367),
         (JLPT.TANOS.N4, 166),
-        (JLPT.TANOS.N5, 79)
+        (JLPT.TANOS.N5, 79),
     ],
 )
 def test_number_of_kanji(kanji_list, expected):
