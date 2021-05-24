@@ -1,7 +1,7 @@
 ===========
 Kanji Lists
 ===========
-A collection of Japanese character lists
+A collection of Japanese character lists, including jōyō kanji, JLPT, and more.
 
 Installation
 ============
@@ -35,7 +35,14 @@ Some lists also have subordinate lists:
     True
     >>> "火" in KYOIKU.GRADE2
     False
-    >>> KYOIKU.GRADE1.issubset(KYOIKU)
+
+All lists inherit from `set`:
+
+.. code-block:: pycon
+
+    >>> isinstance(KYOIKU, set)
+    True
+    >>> KYOIKU.GRADE1.issuperset({'一', '二', '三'})
     True
 
 Lists can also have different versions:
