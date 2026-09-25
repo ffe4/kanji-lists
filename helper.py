@@ -6,7 +6,6 @@ from jinja2 import Template
 import toml
 import black
 
-
 # Template and target file locations of files that need to be generated
 CODEGEN_FILES = [
     ("codegen/kanji_lists.jinja2", "kanji_lists/kanji_lists.py"),
