@@ -4,14 +4,14 @@ import pytest
 
 
 def test_version():
-    assert __version__ == "0.1.0"
+    assert __version__ == "0.2.0"
 
 
 @pytest.mark.parametrize(
     "kanji_list,default_version",
     [
         (JOYO, JOYO.HEISEI22),
-        (JINMEIYO, JINMEIYO.HEISEI29),
+        (JINMEIYO, JINMEIYO.REIWA8),
         (KYOIKU, KYOIKU.REIWA2),
         (KYOIKU.GRADE1, KYOIKU.REIWA2.GRADE1),
         (KYOIKU.GRADE2, KYOIKU.REIWA2.GRADE2),
@@ -36,9 +36,10 @@ def test_default_version_is_correct(kanji_list, default_version):
     [
         (JOYO, 2136),
         (KYOIKU, 1026),
-        (JINMEIYO, 863),
+        (JINMEIYO, 864),
         (JOYO.HEISEI22, 2136),
         (JOYO.SHOWA56, 1945),
+        (JINMEIYO.REIWA8, 864),
         (JINMEIYO.HEISEI29, 863),
         (JINMEIYO.HEISEI27, 862),
         (JINMEIYO.HEISEI25, 861),
@@ -125,7 +126,9 @@ def test_number_of_kanji(kanji_list, expected):
             set(
                 "刊富預採資複罪態絹招徳善境除判述退略基故授損職潔妻舌逆営幹制程旧得未効衆犯評称墓財険減耕状券益検眼提豊災断構児条属版税禁率証歓額訓混再暴絶"
             ),
-            set("功典管単毒宿賞折紀各説希念倉牧殺欠伝周救側求栄量億低辺敗養給腸兵筆候帯貯副漢氏例票標博浅象辞課議想型軍胃飯参健省浴央験令康区約倍要満完漁"),
+            set(
+                "功典管単毒宿賞折紀各説希念倉牧殺欠伝周救側求栄量億低辺敗養給腸兵筆候帯貯副漢氏例票標博浅象辞課議想型軍胃飯参健省浴央験令康区約倍要満完漁"
+            ),
         ),
         (
             KYOIKU.SHOWA36.GRADE6,
@@ -183,7 +186,12 @@ def test_number_of_kanji(kanji_list, expected):
             set("囲紀喜救型航告殺士史象賞貯停堂得毒費粉脈歴"),
             set("賀群徳富恩券承舌銭退敵俵預"),
         ),
-        (KYOIKU.HEISEI4.GRADE6, KYOIKU.REIWA2.GRADE6, set("胃腸恩券承舌銭退敵俵預"), set("城")),
+        (
+            KYOIKU.HEISEI4.GRADE6,
+            KYOIKU.REIWA2.GRADE6,
+            set("胃腸恩券承舌銭退敵俵預"),
+            set("城"),
+        ),
         (
             JOYO.SHOWA56,
             JOYO.HEISEI22,
@@ -194,6 +202,7 @@ def test_number_of_kanji(kanji_list, expected):
         ),
         (JINMEIYO.HEISEI25, JINMEIYO.HEISEI27, set("巫"), set()),
         (JINMEIYO.HEISEI27, JINMEIYO.HEISEI29, set("渾"), set()),
+        (JINMEIYO.HEISEI29, JINMEIYO.REIWA8, set("勒"), set()),
     ],
 )
 def test_changes_between_consecutive_versions(old, new, added, removed):
