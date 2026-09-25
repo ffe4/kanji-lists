@@ -69,6 +69,7 @@ Available Lists and Versions
   - HEISEI25
   - HEISEI27
   - HEISEI29
+  - REIWA8
 - JLPT
     
   - TANOS
